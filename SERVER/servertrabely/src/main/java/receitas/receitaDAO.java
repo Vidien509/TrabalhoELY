@@ -11,12 +11,16 @@ public class receitaDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "INSERT INTO receitas (autor, data, ingredientes, preparo) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO receitas (titulo, descricao, autor, data, ingredientes, preparo) VALUES (?, ?, ?, ?, ?, ?)";
+			//System.out.println("SQL INSERT -----------  "+sql);
 			PreparedStatement prep = con.getConnection().prepareStatement(sql);
-			prep.setString(1, ext.getAutor());
-			prep.setString(2, ext.getData());
-			prep.setString(3, ext.getIngredientes());
-			prep.setString(4, ext.getPreparo());
+			prep.setString(1, ext.getTitulo());
+			prep.setString(2, ext.getDescricao());
+			prep.setString(3, ext.getAutor());
+			prep.setString(4, ext.getData());
+			prep.setString(5, ext.getIngredientes());
+			prep.setString(6, ext.getPreparo());
+			System.out.println("SQL INSERT -----------  "+prep);
 			prep.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,13 +31,15 @@ public class receitaDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "UPDATE receitas SET autor = ?, data = ?, ingredientes = ?, preparo = ? WHERE idreceita = ?";
+			String sql = "UPDATE receitas SET autor = ?, titulo = ?, descricao = ?, data = ?, ingredientes = ?, preparo = ? WHERE idreceita = ?";
 			PreparedStatement prep = con.getConnection().prepareStatement(sql);
 			prep.setString(1, ext.getAutor());
-			prep.setString(2, ext.getData());
-			prep.setString(3, ext.getIngredientes());
-			prep.setString(4, ext.getPreparo());
-			prep.setInt(5, ext.getIdreceita());
+			prep.setString(2, ext.getTitulo());
+			prep.setString(3, ext.getDescricao());
+			prep.setString(4, ext.getData());
+			prep.setString(5, ext.getIngredientes());
+			prep.setString(6, ext.getPreparo());
+			prep.setInt(7, ext.getIdreceita());
 			prep.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,6 +68,8 @@ public class receitaDAO {
 			Statement sta = con.getConnection().createStatement();
 			ResultSet res = sta.executeQuery(sql);
 			if (res.next()) {
+				ext.setTitulo(res.getString("titulo"));
+				ext.setDescricao(res.getString("descricao"));
 				ext.setAutor(res.getString("autor"));
 				ext.setIngredientes(res.getString("ingredientes"));
 				ext.setData(res.getString("data"));
@@ -84,14 +92,15 @@ public class receitaDAO {
 			Statement instrucao = con.getConnection().createStatement();
 			ResultSet resultSet = instrucao.executeQuery(sql);
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				receitaDTO ext = new receitaDTO();
 				ext.setIdreceita(resultSet.getInt("idreceita"));
+				ext.setTitulo(resultSet.getString("titulo"));
+				ext.setDescricao(resultSet.getString("descricao"));
 				ext.setAutor(resultSet.getString("autor"));
 				ext.setData(resultSet.getString("data"));
 				ext.setIngredientes(resultSet.getString("ingredientes"));
 				ext.setPreparo(resultSet.getString("preparo"));
-				System.out.println(ext);
 				lista.add(ext);
 			}
 		} catch (Exception e) {

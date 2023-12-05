@@ -17,6 +17,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jjwt-gson-0.11.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Agely/Desktop/trabEly/postgresql-42.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/55359/Documents/GitHub/TrabalhoELY/SERVER/servertrabely/src/main/webapp/WEB-INF/lib/postgresql-42.7.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

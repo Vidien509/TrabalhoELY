@@ -1,0 +1,257 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+body #load,
+body #loadServer,
+body #loadReload {
+  background-color: rgba(139, 139, 139, 0.24);
+  position: fixed;
+  height: 150vh;
+  width: 500vh;
+  margin-top: -20px;
+  z-index: 9999;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media only screen and (max-width: 938px) {
+    body #load,
+    body #loadServer,
+    body #loadReload {
+      height: 140vh;
+    }
+  }
+  @media only screen and (max-width: 896px) {
+    body #load,
+    body #loadServer,
+    body #loadReload {
+      height: 160vh;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    body #load,
+    body #loadServer,
+    body #loadReload {
+      height: 180vh;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    body #load,
+    body #loadServer,
+    body #loadReload {
+      height: 200vh;
+    }
+  }
+  @media only screen and (max-width: 338px) {
+    body #load,
+    body #loadServer,
+    body #loadReload {
+      height: 210vh;
+    }
+  }
+  body #load .lds-dual-ring,
+  body #loadServer .lds-dual-ring,
+  body #loadReload .lds-dual-ring {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    top: -40px;
+  }
+  @media only screen and (max-width: 938px) {
+    body #load .lds-dual-ring,
+    body #loadServer .lds-dual-ring,
+    body #loadReload .lds-dual-ring {
+      top: -150px;
+    }
+  }
+  @media only screen and (max-width: 896px) {
+    body #load .lds-dual-ring,
+    body #loadServer .lds-dual-ring,
+    body #loadReload .lds-dual-ring {
+      top: -170px;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    body #load .lds-dual-ring,
+    body #loadServer .lds-dual-ring,
+    body #loadReload .lds-dual-ring {
+      top: -200px;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    body #load .lds-dual-ring,
+    body #loadServer .lds-dual-ring,
+    body #loadReload .lds-dual-ring {
+      top: -350px;
+    }
+  }
+  @-webkit-keyframes pulse {
+    0% {
+      -webkit-transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.1);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  body #load .lds-dual-ring:after,
+  body #loadServer .lds-dual-ring:after,
+  body #loadReload .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #aaa transparent #aaa transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.contentReceitas{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 600px;
+    margin-top: 5%;
+    box-shadow: 1 1 1px;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    color: #414141;;
+    box-shadow: 0 2px 6px 0px dodgerblue;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+.headerBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headerReceitas{
+    display: block;
+    justify-content: center;
+    align-items: center;   
+    width: 100%;
+    margin-top: 7%;
+}
+
+.bodyReceitas{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.botaoEditar, .botaoListar {
+    display: block;
+    margin-top: 0.5%;
+    margin-left: 46%;
+    box-shadow: 0 2px 6px 0px #ccc;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 0px;
+    transition: 0.3s;
+    position: absolute;
+    cursor: pointer;
+}
+.botaoEditar:hover,.botaoListar:hover{
+    box-shadow: 0 2px 6px 0px #ccc;
+    background-color: rgba(208, 208, 208, 0.208)
+}
+
+.imgEditar, .imgListar{
+    width: 40px;
+}
+
+.inputReceitas{
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    border: 0px;
+    outline: 0px;
+    transition: 0.3s;
+    border-radius: 10px;
+    outline: 1px solid #ccc;
+}
+
+.inputReceitas:focus{
+    width: 80%;
+    height: 40px;
+    text-align: center;
+}
+.inputReceitas:active{
+    width: 80%;
+    height: 40px;
+    text-align: center;
+}
+.inputReceitas.semvalor{
+    outline: 1px solid red;
+}
+
+.inputSalvar{
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 6px 0px #ccc;
+    background-color: dodgerblue;
+    border: 0px;
+    border-radius: 15px;
+    width: 5%;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 5%;
+    position: absolute;
+    margin-left: 19%;
+}
+
+.inputSalvar:hover{
+    background-color: rgb(28, 128, 228);
+}
+
+.inputSalvar:active{
+    background-color: white
+}
+
+.editarReceitaBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#inputAutor{
+    margin-bottom: 3%;
+}
+
+.tituloContentCriar, .tituloContentLista{
+    font-size: 35px;
+    margin-top: 2%;
+}
+.viewReceitaBlock{
+    border-bottom: 2px solid;
+    border-color: dodgerblue;
+}
+.viewReceitaBlock:last-child{
+    border-bottom: 0px solid;
+}

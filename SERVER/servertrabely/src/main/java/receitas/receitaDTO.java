@@ -2,6 +2,9 @@ package receitas;
 
 public class receitaDTO {
 
+	
+	private String titulo;
+	private String descricao;
 	private String autor;
 	private String data;
 	private String ingredientes;
@@ -10,6 +13,18 @@ public class receitaDTO {
 	private Integer idreceita;
 	
 	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	public Integer getIdreceita() {
 		return idreceita;
 	}

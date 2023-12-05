@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Receitas do Dia</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+    <div id="load" style="display: none;">
+        <div class="lds-dual-ring">
+        </div>
+    </div>
+
+    <div class="contentReceitas">
+        <div class="headerBlock">
+            <div class="tituloContentCriar" style="display: none;">Criar Receita</div>
+            <div class="tituloContentLista">Receitas do Dia</div>
+            <button class="botaoEditar"><img src="img/editar.png" alt="" class="imgEditar" onclick="criarReceita()"></button>
+            <button class="botaoListar" style="display: none;"><img src="img/menu.png" alt="" class="imgListar" onclick="mostraLista()"></button>
+        </div>
+        <div class="contentBlock">
+            <div class="editarReceitaBlock" style="display: none;">
+                <div class="headerReceitas">
+                    <input class="inputReceitas" id="inputAutor" type="text" placeholder="Autor da receita" required></input>
+                    <input class="inputReceitas" id="inputTitulo" type="text" placeholder="Titulo" required style="margin-bottom: 30px;"></input>
+                    <input class="inputReceitas" id="inputDescricao" type="text" placeholder="Descricao" required></input>
+                </div>
+                <div class="bodyReceitas">
+                    <input class="inputReceitas" id="inputIngredientes" type="text" placeholder="Ingredientes" required style="margin-bottom: 20px;"></input>
+                    <input class="inputReceitas" id="inputPreparo" type="text" placeholder="Modo de preparo" required></input>
+                </div>
+                <input class="inputSalvar" type="button" value="Salvar" onclick="salvarReceita()">
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../JAVASCRIPT/index.js"></script>
+    <script src="../JAVASCRIPT/servidor.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            initIndex()
+        }
+    </script>
+</body>
+
+</html>

@@ -44,7 +44,6 @@ public class receita extends HttpServlet {
 		response.addHeader("Content-Type", "application/json; charset=UTF-8");
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		out.println("Executando método GET");
 		receitaDAO extDao = new receitaDAO();
 		List<receitaDTO> lista = extDao.listar();
 		Gson gson = new Gson();
@@ -82,10 +81,15 @@ public class receita extends HttpServlet {
 			
 			receitaDAO extDao = new receitaDAO();
 			extDao.inserir(ext);
-			out.println("Registro inserido com sucesso!");
+			
+			retorno r = new retorno(true, "Registro inserido com sucesso.");
+			System.out.println(gson.toJson(r));
 		} catch (Exception e) {
+			retorno r = new retorno(false, e.getMessage());
+			Gson gson = new Gson();
+			System.out.println(gson.toJson(r));
 			e.printStackTrace();
-			out.print(e.getMessage());
+			out.print(r);
 		}
 	}
 	
@@ -116,10 +120,14 @@ public class receita extends HttpServlet {
 			
 			receitaDAO extDao = new receitaDAO();
 			extDao.alterar(ext);
-			out.println("Registro alterado com sucesso!");
+			retorno r = new retorno(true, "Registro alterado com sucesso.");
+			System.out.println(gson.toJson(r));
 		} catch (Exception e) {
+			retorno r = new retorno(false, e.getMessage());
+			Gson gson = new Gson();
+			System.out.println(gson.toJson(r));
 			e.printStackTrace();
-			out.print(e.getMessage());
+			out.print(r);
 		}
 	}
 	
@@ -144,11 +152,15 @@ public class receita extends HttpServlet {
 			receitaDTO ext= new receitaDTO();
 			ext.setIdreceita(Integer.parseInt(id));
 			extDao.excluir(ext);
-			
-			out.print("Registro excluído com sucesso.");
+			Gson gson = new Gson();
+			retorno r = new retorno(true, "Registro excluido com sucesso.");
+			System.out.println(gson.toJson(r));
 		} catch (Exception e) {
+			retorno r = new retorno(false, e.getMessage());
+			Gson gson = new Gson();
+			System.out.println(gson.toJson(r));
 			e.printStackTrace();
-			out.print(e.getMessage());
+			out.print(r);
 		}
 	}
 }
