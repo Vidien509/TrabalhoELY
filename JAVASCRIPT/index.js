@@ -1,119 +1,82 @@
+function initIndex(){
 
-var criarReceitaHtml = '' 
-
-async function initIndex() {
-    var receitas = await getReceita()
-    // console.log(receitas)
-    var receitaHtml = ''
-    for (i of receitas) {
-        receitaHtml += `
-        <div class="viewReceitaBlock">
-            <div class="headerReceitas">
-                <h2>Autor: ${i.autor}</h2>
-                <h3>${i.data}</h3>
-                <h2>${i.titulo}</h2>
-                <h3>${i.descricao}</h3>    
-            </div>
-            <div class="bodyReceitas">
-                <h4>Ingredientes: ${i.ingredientes}</h4>       
-                <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
-            </div>
-        </div>`
-    }
-    criarReceitaHtml = document.querySelector('.contentBlock').innerHTML
-    document.querySelector('.contentBlock').innerHTML += receitaHtml
 }
 
-async function salvarReceita() {
-    if (document.querySelector('#inputAutor').value == '') {
-        document.querySelector('#inputAutor').classList.toggle('semvalor')
-        setTimeout(function () {
-            document.querySelector('#inputAutor').classList.toggle('semvalor')
-        }, 300)
-    } else if (document.querySelector('#inputTitulo').value == '') {
-        document.querySelector('#inputTitulo').classList.toggle('semvalor')
-        setTimeout(function () {
-            document.querySelector('#inputTitulo').classList.toggle('semvalor')
-        }, 300)
-    } else if (document.querySelector('#inputDescricao').value == '') {
-        document.querySelector('#inputDescricao').classList.toggle('semvalor')
-        setTimeout(function () {
-            document.querySelector('#inputDescricao').classList.toggle('semvalor')
-        }, 300)
-    } else if (document.querySelector('#inputIngredientes').value == '') {
-        document.querySelector('#inputIngredientes').classList.toggle('semvalor')
-        setTimeout(function () {
-            document.querySelector('#inputIngredientes').classList.toggle('semvalor')
-        }, 300)
-    } else if (document.querySelector('#inputPreparo').value == '') {
-        document.querySelector('#inputPreparo').classList.toggle('semvalor')
-        setTimeout(function () {
-            document.querySelector('#inputPreparo').classList.toggle('semvalor')
-        }, 300)
-    } else {
-        var dataAtual = new Date()
-        var dia = dataAtual.getDate()
-        var mes = dataAtual.getMonth() + 1
-        var ano = dataAtual.getFullYear()
+async function fazerLogin(e){
+    if(e.id == 'login'){
+        if (document.querySelector('.loginBlock #inputUsuario').value == '') {
+            document.querySelector('.loginBlock #inputUsuario').classList.toggle('semvalor')
+            setTimeout(function () {
+                document.querySelector('.loginBlock #inputUsuario').classList.toggle('semvalor')
+            }, 300)
+        } else if (document.querySelector('.loginBlock #inputSenha').value == '') {
+            document.querySelector('.loginBlock #inputSenha').classList.toggle('semvalor')
+            setTimeout(function () {
+                document.querySelector('.loginBlock #inputSenha').classList.toggle('semvalor')
+            }, 300)
+        }else{
+            var usuario = document.querySelector('.loginBlock #inputUsuario').value
+            var senha = document.querySelector('.loginBlock #inputSenha').value
+            var info = {
+                usuario: usuario,
+                senha: senha,
+            }
+            document.querySelector('#load').style.display = ''
+            //console.log(info)
+            var login = await getLogin(info)
+            if(Object.keys(login).length < 1){
+                window.alert('Login ou senha inválido!')
+            }else{
+                window.sessionStorage.setItem('user', JSON.stringify(login))
+                window.location.href = "main.html";
+            }
 
-        var autor = document.querySelector('#inputAutor').value
-        var titulo = document.querySelector('#inputTitulo').value
-        var descricao = document.querySelector('#inputDescricao').value
-        var ingredientes = document.querySelector('#inputIngredientes').value
-        var preparo = document.querySelector('#inputPreparo').value
-        var info = {
-            autor: autor,
-            titulo: titulo,
-            descricao: descricao,
-            data: dia + '/' + mes + '/' + ano,
-            ingredientes: ingredientes,
-            preparo: preparo
+            document.querySelector('#load').style.display = 'none'
         }
-        document.querySelector('#load').style.display = ''
-        console.log(info)
-        await postReceita(info)
-        document.querySelector('#load').style.display = 'none'
+    }else if(e.id == 'cadastro'){
+        console.log(e.id)
+        if (document.querySelector('.cadastroBlock #inputEmail').value == '') {
+            document.querySelector('.cadastroBlock #inputEmail').classList.toggle('semvalor')
+            setTimeout(function () {
+                document.querySelector('.cadastroBlock #inputEmail').classList.toggle('semvalor')
+            }, 300)
+        } else if (document.querySelector('.cadastroBlock #inputUsuario').value == '') {
+            document.querySelector('.cadastroBlock #inputUsuario').classList.toggle('semvalor')
+            setTimeout(function () {
+                document.querySelector('.cadastroBlock #inputUsuario').classList.toggle('semvalor')
+            }, 300)
+        } else if (document.querySelector('.cadastroBlock #inputSenha').value == '') {
+            document.querySelector('.cadastroBlock #inputSenha').classList.toggle('semvalor')
+            setTimeout(function () {
+                document.querySelector('.cadastroBlock #inputSenha').classList.toggle('semvalor')
+            }, 300)
+        } else{
+            console.log('cadstro')
+            var usuario = document.querySelector('.cadastroBlock #inputUsuario').value
+            var email = document.querySelector('.cadastroBlock #inputEmail').value
+            var senha = document.querySelector('.cadastroBlock #inputSenha').value
+            var info = {
+                usuario: usuario,
+                senha: senha,
+                email: email
+            }
+            document.querySelector('#load').style.display = ''
+            var cadastro = await postLogin(info)
+            if(cadastro.ok){
+                console.log(cadastro)
+                entrar()
+            }
+            document.querySelector('#load').style.display = 'none'
+        }
     }
 }
 
-async function listaReceitas(){
-    var receitas = await getReceita()
-    var receitaHtml = ''
-    for (i of receitas) {
-        receitaHtml += `
-        <div class="viewReceitaBlock">
-            <div class="headerReceitas">
-                <h2>Autor: ${i.autor}</h2>
-                <h3>${i.data}</h3>
-                <h2>${i.titulo}</h2>
-                <h3>${i.descricao}</h3>    
-            </div>
-            <div class="bodyReceitas">
-                <h4>Ingredientes: ${i.ingredientes}</h4>       
-                <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
-            </div>
-        </div>`
-    }
-    document.querySelector('.contentBlock').innerHTML = criarReceitaHtml 
-    document.querySelector('.contentBlock').innerHTML += receitaHtml
+function cadastro(){
+    document.querySelector('.loginBlock').style.display = 'none'
+    document.querySelector('.cadastroBlock').style.display = 'flex'
 }
 
-function mostraLista() {
-    document.querySelector('.tituloContentCriar').style.display = 'none'
-    document.querySelector('.tituloContentLista').style.display = 'block'
-    document.querySelector('.botaoEditar').style.display = 'block'
-    document.querySelector('.botaoListar').style.display = 'none'
-
-    document.querySelector('.editarReceitaBlock').style.display = 'none'
-    document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'block')
-}
-
-function criarReceita() {
-    document.querySelector('.tituloContentCriar').style.display = 'block'
-    document.querySelector('.tituloContentLista').style.display = 'none'
-    document.querySelector('.botaoEditar').style.display = 'none'
-    document.querySelector('.botaoListar').style.display = 'block'
-
-    document.querySelector('.editarReceitaBlock').style.display = 'block'
-    document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'none')
+function entrar(){
+    document.querySelector('.loginBlock').style.display = 'flex'
+    document.querySelector('.cadastroBlock').style.display = 'none'
 }
