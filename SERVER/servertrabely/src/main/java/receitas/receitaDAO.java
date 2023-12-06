@@ -105,7 +105,7 @@ public class receitaDAO {
 		Conexao con = new Conexao();
 		try {
 			String sql = "SELECT * FROM receitas as r INNER JOIN receita_usuario as ru on ru.idreceita_fk = "
-					+ "r.idreceita WHERE ru.idusuario_fk = " + id;
+					+ "r.idreceita WHERE ru.idusuario_fk = " + id + " ORDER BY data";
 			System.out.println("SQL CONSULTA POR USUARIO: "+sql);
 			
 			Statement sta = con.getConnection().createStatement();
@@ -132,7 +132,7 @@ public class receitaDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "SELECT * FROM receitas ORDER BY idreceita";
+			String sql = "SELECT * FROM receitas ORDER BY data";
 			System.out.println("SQL [ GET ] - " + sql);
 			Statement instrucao = con.getConnection().createStatement();
 			ResultSet resultSet = instrucao.executeQuery(sql);
