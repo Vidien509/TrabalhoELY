@@ -43,11 +43,24 @@ public class receita extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 		response.addHeader("Content-Type", "application/json; charset=UTF-8");
 		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		receitaDAO extDao = new receitaDAO();
-		List<receitaDTO> lista = extDao.listar();
-		Gson gson = new Gson();
-		out.println(gson.toJson(lista));
+		
+		String usuario = request.getParameter("idusuario");
+		
+		System.out.println("-----ID USUARIO RECEBIDO: "+usuario);
+		
+		if(usuario != null && usuario != "") {
+			PrintWriter out = response.getWriter();
+			receitaDAO extDao = new receitaDAO();
+			List<receitaDTO> lista = extDao.consultarReceitas(usuario);
+			Gson gson = new Gson();
+			out.println(gson.toJson(lista));
+		}else {
+			PrintWriter out = response.getWriter();
+			receitaDAO extDao = new receitaDAO();
+			List<receitaDTO> lista = extDao.listar();
+			Gson gson = new Gson();
+			out.println(gson.toJson(lista));
+		}
 	}
 
 	/**

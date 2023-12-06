@@ -11,8 +11,15 @@ public class receitaDTO {
 	private String preparo;
 	
 	private Integer idreceita;
+	private Integer idusuario;
 	
 	
+	public Integer getIdusuario() {
+		return idusuario;
+	}
+	public void setIdusuario(Integer idusuario) {
+		this.idusuario = idusuario;
+	}
 	public String getTitulo() {
 		return titulo;
 	}

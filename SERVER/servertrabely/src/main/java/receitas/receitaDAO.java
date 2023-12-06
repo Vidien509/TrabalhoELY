@@ -9,21 +9,40 @@ import java.util.List;
 public class receitaDAO {
 	public void inserir (receitaDTO ext) {
 		Conexao con = new Conexao();
-		
+		int idGerado = 0;
 		try {
 			String sql = "INSERT INTO receitas (titulo, descricao, autor, data, ingredientes, preparo) VALUES (?, ?, ?, ?, ?, ?)";
 			//System.out.println("SQL INSERT -----------  "+sql);
-			PreparedStatement prep = con.getConnection().prepareStatement(sql);
+			PreparedStatement prep = con.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			prep.setString(1, ext.getTitulo());
 			prep.setString(2, ext.getDescricao());
 			prep.setString(3, ext.getAutor());
 			prep.setString(4, ext.getData());
 			prep.setString(5, ext.getIngredientes());
 			prep.setString(6, ext.getPreparo());
-			System.out.println("SQL INSERT -----------  "+prep);
-			prep.execute();
+			int rowsAffected = prep.executeUpdate();
+
+		    if (rowsAffected > 0) {
+		        try (ResultSet generatedKeys = prep.getGeneratedKeys()) {
+		            if (generatedKeys.next()) {
+		                idGerado = generatedKeys.getInt(1);
+		                //System.out.println("ID GERADO: "+idGerado);
+		            } else {
+		                System.err.println("Falha ao obter o ID gerado.");
+		            }
+		        }
+                sql = "INSERT INTO receita_usuario (idreceita_fk, idusuario_fk) VALUES (?, ?)";
+                PreparedStatement pst = con.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    			pst = con.getConnection().prepareStatement(sql);
+    			pst.setInt(1, idGerado);
+    			pst.setInt(2, ext.getIdusuario());
+    			rowsAffected = pst.executeUpdate();
+		    } else {
+		        System.err.println("Nenhum registro inserido.");
+		    }
 		} catch (Exception e) {
 			e.printStackTrace();
+
 		}
 	}
 	
@@ -62,7 +81,6 @@ public class receitaDAO {
 	public receitaDTO consultar (int id) {
 		receitaDTO ext = new receitaDTO();
 		Conexao con = new Conexao();
-		
 		try {
 			String sql = "SELECT * FROM receitas WHERE idreceita = " + id;
 			Statement sta = con.getConnection().createStatement();
@@ -80,6 +98,33 @@ public class receitaDAO {
 		}
 		con.desconectar();
 		return ext;
+	}
+	
+	public List<receitaDTO> consultarReceitas (String id) {
+		List<receitaDTO> lista = new LinkedList<receitaDTO>();
+		Conexao con = new Conexao();
+		try {
+			String sql = "SELECT * FROM receitas as r INNER JOIN receita_usuario as ru on ru.idreceita_fk = "
+					+ "r.idreceita WHERE ru.idusuario_fk = " + id;
+			System.out.println("SQL CONSULTA POR USUARIO: "+sql);
+			
+			Statement sta = con.getConnection().createStatement();
+			ResultSet res = sta.executeQuery(sql);
+			while (res.next()) {
+				receitaDTO ext = new receitaDTO();
+				ext.setTitulo(res.getString("titulo"));
+				ext.setDescricao(res.getString("descricao"));
+				ext.setAutor(res.getString("autor"));
+				ext.setIngredientes(res.getString("ingredientes"));
+				ext.setData(res.getString("data"));
+				ext.setPreparo(res.getString("preparo"));
+				lista.add(ext);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		con.desconectar();
+		return lista;
 	}
 	
 	public List<receitaDTO> listar() {

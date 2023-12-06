@@ -7,15 +7,15 @@ public class loginDTO {
 	private String senha;
 	private String email;
 
-	private Integer idlogin;
+	private Integer idusuario;
 
 	
 	public Integer getIdlogin() {
-		return idlogin;
+		return idusuario;
 	}
 
 	public void setIdlogin(Integer idlogin) {
-		this.idlogin = idlogin;
+		this.idusuario = idlogin;
 	}
 
 	public String getUsuario() {

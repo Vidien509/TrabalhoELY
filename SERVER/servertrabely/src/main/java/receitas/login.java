@@ -110,7 +110,7 @@ public class login extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 		response.addHeader("Content-Type", "application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		//out.println("Executando método PUT");
+		out.println("Executando método PUT");
 		try {
 			StringBuilder sb = new StringBuilder();
 			BufferedReader reader = request.getReader();

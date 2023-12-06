@@ -13,7 +13,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
@@ -23,20 +24,38 @@
         </div>
     </div>
 
-    <div class="contentReceitas">
-        <div class="headerBlock">
-            <div class="tituloContentCriar" style="display: none;">Criar Receita</div>
-            <div class="tituloContentLista">Receitas do Dia</div>
-            <button class="botaoEditar"><img src="img/editar.png" alt="" class="imgEditar"
-                    onclick="criarReceita()"></button>
-            <button class="botaoListar" style="display: none;"><img src="img/menu.png" alt="" class="imgListar"
-                    onclick="mostraLista()"></button>
+    <nav class="navbar fixed-top bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="navbar-titulo">Receitas</div>
+            <div class="navInputsList">
+                <input class="inputNav" type="button" value="Home" onclick="mostraLista()">
+                <input class="inputNav" type="button" value="Perfil" onclick="perfil()">
+                <input class="inputNav" type="button" value="Sair" onclick="sair()">
+            </div>
         </div>
+    </nav>
+
+    <div class="contentReceitas">
+        <nav class="navbar fixed bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="headerBlock">
+                    <div class="tituloContentCriar" style="display: none;">Criar Receita</div>
+                    <div class="tituloContentLista">Receitas do Dia</div>
+                    <div class="tituloContentPerfil" style="display: none;margin-top: 0;">
+                        <div class="tituloContentInfo" style="margin-right: 10%;" onclick="perfil()" >Info</div>
+                        <div class="tituloContentMyReceitas" style="width: 250px;" onclick="minhasReceitas()" >Minhas Receitas</div>
+                    </div>
+                    <button class="botaoEditar"><img src="img/editar.png" alt="" class="imgEditar" onclick="criarReceita()"></button>
+                    <button class="botaoPerfil"><img src="img/user-white.png" alt="" class="imgPerfil" onclick="perfil()"></button>
+                    <button class="botaoListar" style="display: none;"><img src="img/menu.png" alt="" class="imgListar"
+                            onclick="mostraLista()"></button>
+                </div>
+            </div>
+          </nav>
+
         <div class="contentBlock">
             <div class="editarReceitaBlock" style="display: none;">
                 <div class="headerReceitas">
-                    <input class="inputReceitas" id="inputAutor" type="text" placeholder="Autor da receita"
-                        required></input>
                     <input class="inputReceitas" id="inputTitulo" type="text" placeholder="Titulo" required
                         style="margin-bottom: 30px;"></input>
                     <input class="inputReceitas" id="inputDescricao" type="text" placeholder="Descricao"
@@ -50,11 +69,23 @@
                 </div>
                 <input class="inputSalvar" type="button" value="Salvar" onclick="salvarReceita()">
             </div>
+
+
+            <div class="perfilBlock" style="display: none;">
+                <div class="infoBlock">
+                
+                </div>
+                <div class="minhasReceitasBlock">
+                
+                </div>
+            </div>
         </div>
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="../JAVASCRIPT/main.js"></script>
     <script src="../JAVASCRIPT/servidor.js"></script>
     <script type="text/javascript">

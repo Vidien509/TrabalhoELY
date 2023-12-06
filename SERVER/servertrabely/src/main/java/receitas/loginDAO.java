@@ -67,6 +67,7 @@ public class loginDAO {
 				ext.setUsuario(res.getString("nome"));
 				ext.setEmail(res.getString("email"));
 				ext.setSenha(res.getString("senha"));
+				ext.setIdlogin(res.getInt("idusuario"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
