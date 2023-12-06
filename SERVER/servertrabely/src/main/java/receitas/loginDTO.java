@@ -14,8 +14,8 @@ public class loginDTO {
 		return idusuario;
 	}
 
-	public void setIdlogin(Integer idlogin) {
-		this.idusuario = idlogin;
+	public void setIdlogin(Integer idusuario) {
+		this.idusuario = idusuario;
 	}
 
 	public String getUsuario() {

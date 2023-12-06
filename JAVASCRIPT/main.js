@@ -203,7 +203,7 @@ async function minhasReceitas() {
                         <h4>Ingredientes: ${i.ingredientes}</h4>       
                         <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
                     </div>
-                    <input class="inputDeletar" type="button" value="Deletar" onclick="deletarReceita()">
+                    <input class="inputDeletar" type="button" id="${i.idreceita}" value="Deletar" onclick="deletarReceita(this)">
                 </div>`
             }
         }
@@ -253,16 +253,25 @@ async function salvarPerfil() {
         var email = document.querySelector('.perfilBlock #inputEmail').value
         var info = {
             usuario: usuario,
-            email: email
+            email: email,
+            idusuario: user.idusuario
         }
         document.querySelector('#load').style.display = ''
         var cadastro = await putLogin(info)
         if (cadastro.ok) {
             console.log(cadastro)
-            entrar()
+            perfil()
         }
         document.querySelector('#load').style.display = 'none'
     }
+}
+
+
+async function deletarReceita(e){
+    document.querySelector('#load').style.display = ''
+    await deleteReceita(e.id)
+    minhasReceitas()
+    document.querySelector('#load').style.display = 'none'
 }
 
 

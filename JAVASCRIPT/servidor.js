@@ -104,7 +104,33 @@ async function putLogin(info) {
     }).catch(error => {
         console.error("Error:", error);
     })
-    document.querySelector('#load').style.display = 'none'
+    return dados
+}
+
+
+async function deleteReceita(id) {
+    obj = {
+        method: 'DELETE',
+    }
+    var url = 'http://localhost:8080/servertrabely/receitas/'+id
+    console.log(url)
+    var dados = await new Promise(function (resolve, reject) {
+        fetch(url, obj).then(async function (response) {
+            if (response.status >= 200 && response.status < 300) {
+                const retorno = response;
+                // listaReceitas()
+                // mostraLista()
+                resolve(retorno);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: this.statusText
+                });
+            }
+        })
+    }).catch(error => {
+        console.error("Error:", error);
+    })
     return dados
 }
 

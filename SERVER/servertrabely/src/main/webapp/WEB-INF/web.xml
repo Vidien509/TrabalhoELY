@@ -14,7 +14,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>receitas</servlet-name>
-		<url-pattern>/receitas</url-pattern>
+		<url-pattern>/receitas/*</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

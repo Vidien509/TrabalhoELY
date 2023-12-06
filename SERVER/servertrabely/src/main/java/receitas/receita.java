@@ -31,6 +31,7 @@ public class receita extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; chçarset=UTF-8");
 		response.setHeader("Cache-control", "no-cache, no-store");
@@ -66,6 +67,7 @@ public class receita extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; chçarset=UTF-8");
 		response.setHeader("Cache-control", "no-cache, no-store");
@@ -106,6 +108,7 @@ public class receita extends HttpServlet {
 		}
 	}
 	
+	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; chçarset=UTF-8");
 		response.setHeader("Cache-control", "no-cache, no-store");
@@ -144,6 +147,8 @@ public class receita extends HttpServlet {
 		}
 	}
 	
+	
+	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; chçarset=UTF-8");
 		response.setHeader("Cache-control", "no-cache, no-store");
@@ -157,6 +162,8 @@ public class receita extends HttpServlet {
 		response.addHeader("Content-Type", "application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		//out.println("Executando método DELETE");
+		out.print("ENTROU DELETE");
+		
 		try {
 			String id = request.getRequestURI();
 			id = id.substring(id.lastIndexOf("/")+1);
@@ -176,4 +183,7 @@ public class receita extends HttpServlet {
 			out.print(r);
 		}
 	}
+	
+	
+	
 }
