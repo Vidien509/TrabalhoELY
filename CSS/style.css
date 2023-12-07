@@ -134,7 +134,7 @@ body #loadReload {
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 750px;
+    height: 35rem;
     margin-top: 6%;
     box-shadow: 1 1 1px;
     background-color: #fff;
@@ -324,6 +324,7 @@ body #loadReload {
 
 .navInputsList{
     width: 30%;
+    display: flex;
 }
 
 .navbar-titulo{

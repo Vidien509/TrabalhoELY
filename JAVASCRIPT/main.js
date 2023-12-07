@@ -270,7 +270,7 @@ async function salvarPerfil() {
 async function deletarReceita(e){
     document.querySelector('#load').style.display = ''
     await deleteReceita(e.id)
-    minhasReceitas()
+    perfil()
     document.querySelector('#load').style.display = 'none'
 }
 
