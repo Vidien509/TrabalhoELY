@@ -69,8 +69,15 @@ public class receitaDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "DELETE FROM receitas WHERE idreceita = ?";
+			System.out.println("DELETANDO RECEITA_USUARIO ----------------------");
+			
+			String sql = "DELETE FROM receita_usuario WHERE idreceita_fk = ?";
 			PreparedStatement prep = con.getConnection().prepareStatement(sql);
+			prep.setInt(1, ext.getIdreceita());
+			prep.execute();
+			
+			sql = "DELETE FROM receitas WHERE idreceita = ?";
+			prep = con.getConnection().prepareStatement(sql);
 			prep.setInt(1, ext.getIdreceita());
 			prep.execute();
 		} catch (Exception e) {
@@ -118,6 +125,7 @@ public class receitaDAO {
 				ext.setIngredientes(res.getString("ingredientes"));
 				ext.setData(res.getString("data"));
 				ext.setPreparo(res.getString("preparo"));
+				ext.setIdreceita(res.getInt("idreceita"));
 				lista.add(ext);
 			}
 		} catch (Exception e) {

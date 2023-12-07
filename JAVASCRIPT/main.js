@@ -20,13 +20,13 @@ async function initMain() {
         <div class="viewReceitaBlock">
             <div class="headerReceitas">
                 <h2>Autor: ${i.autor}</h2>
-                <h3>${i.data}</h3>
+                <h3 style="border-bottom: 1px solid #707070;">${i.data}</h3>
                 <h2>${i.titulo}</h2>
                 <h3>${i.descricao}</h3>    
             </div>
-            <div class="bodyReceitas">
+            <div class="bodyReceitas" style="margin-bottom: 1rem;">
                 <h4>Ingredientes: ${i.ingredientes}</h4>       
-                <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
+                <h4 style="margin-bottom: 1rem;">Modo de preparo: ${i.preparo}</h4>
             </div>
         </div>`
         }
@@ -96,47 +96,41 @@ async function listaReceitas() {
                 <h2>${i.titulo}</h2>
                 <h3>${i.descricao}</h3>    
             </div>
-            <div class="bodyReceitas">
+            <div class="bodyReceitas" style="margin-bottom: 1rem;">
                 <h4>Ingredientes: ${i.ingredientes}</h4>       
-                <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
+                <h4 style="margin-bottom: 1rem;">Modo de preparo: ${i.preparo}</h4>
             </div>
         </div>`
     }
     document.querySelector('.contentBlock').innerHTML = criarReceitaHtml
     document.querySelector('.contentBlock').innerHTML += receitaHtml
-}
 
-function mostraLista() {
     document.querySelector('.tituloContentLista').style.display = 'flex'
     document.querySelector('.tituloContentPerfil').style.display = 'none'
     document.querySelector('.tituloContentCriar').style.display = 'none'
     document.querySelector('.botaoEditar').style.display = 'none'
-    document.querySelector('.botaoPerfil').style.display = 'flex'
+    document.querySelector('.botaoPerfil').style.display = ''
     document.querySelector('.botaoListar').style.display = 'none'
-    document.querySelector('.botaoListar').style['left'] = '92%'
-    document.querySelector('.botaoPerfil').style['left'] = '92%'
-    document.querySelector('.botaoEditar').style['left'] = '92%'
 
     document.querySelector('.editarReceitaBlock').style.display = 'none'
     document.querySelector('.perfilBlock').style.display = 'none'
-    document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'block')
+    document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'flex')
 
     document.querySelector('.tituloContentMyReceitas').classList.remove('active')
     document.querySelector('.tituloContentInfo').classList.remove('active')
+    
 }
+
 
 function criarReceita() {
     document.querySelector('.tituloContentCriar').style.display = 'flex'
     document.querySelector('.tituloContentLista').style.display = 'none'
     document.querySelector('.tituloContentPerfil').style.display = 'none'
-    document.querySelector('.botaoPerfil').style.display = 'flex'
+    document.querySelector('.botaoPerfil').style.display = ''
     document.querySelector('.botaoEditar').style.display = 'none'
-    document.querySelector('.botaoListar').style.display = 'flex'
-    document.querySelector('.botaoListar').style['left'] = '92%'
-    document.querySelector('.botaoPerfil').style['left'] = '85%'
-    document.querySelector('.botaoEditar').style['left'] = '92%'
+    document.querySelector('.botaoListar').style.display = ''
 
-    document.querySelector('.editarReceitaBlock').style.display = 'block'
+    document.querySelector('.editarReceitaBlock').style.display = 'flex'
     document.querySelector('.perfilBlock').style.display = 'none'
     document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'none')
 
@@ -154,11 +148,13 @@ function perfil() {
             <p>E-mail</p>
             <input class="inputReceitas" id="inputEmail" value="${user.email}" type="text" placeholder="Titulo" required></input>
         </div>
-        <input class="inputSalvarPerfil" type="button" value="Salvar" onclick="salvarPerfil()">`
+        <div class="footereditar">
+        <input class="inputSalvarPerfil" type="button" value="Salvar" onclick="salvarPerfil()">
+        </div>`
 
         document.querySelector('.infoBlock').innerHTML = userHtml
         document.querySelector('.minhasReceitasBlock').style.display = 'none'
-        document.querySelector('.infoBlock').style.display = 'block'
+        document.querySelector('.infoBlock').style.display = 'flex'
 
         document.querySelector('.tituloContentMyReceitas').classList.remove('active')
         document.querySelector('.tituloContentInfo').classList.toggle('active')
@@ -168,15 +164,12 @@ function perfil() {
         //document.querySelector('.tituloContentPerfil').innerHTML = user.usuario
         document.querySelector('.tituloContentPerfil').style.display = 'flex'
 
-        document.querySelector('.botaoEditar').style.display = 'flex'
-        document.querySelector('.botaoListar').style.display = 'flex'
+        document.querySelector('.botaoEditar').style.display = ''
+        document.querySelector('.botaoListar').style.display = ''
         document.querySelector('.botaoPerfil').style.display = 'none'
-        document.querySelector('.botaoListar').style['left'] = '92%'
-        document.querySelector('.botaoPerfil').style['left'] = '92%'
-        document.querySelector('.botaoEditar').style['left'] = '85%'
 
         document.querySelector('.editarReceitaBlock').style.display = 'none'
-        document.querySelector('.perfilBlock').style.display = 'block'
+        document.querySelector('.perfilBlock').style.display = 'flex'
         document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'none')
     }
 }
@@ -190,20 +183,21 @@ async function minhasReceitas() {
 
         if (receitas.length > 0) {
             for (i of receitas) {
-                console.log(i)
                 receitaHtml += `
                 <div class="viewReceitaBlock">
                     <div class="headerReceitas">
                         <h2>Autor: ${i.autor}</h2>
-                        <h3>${i.data}</h3>
+                        <h3 style="border-bottom: 1px solid #707070;">${i.data}</h3>
                         <h2>${i.titulo}</h2>
                         <h3>${i.descricao}</h3>    
                     </div>
-                    <div class="bodyReceitas">
+                    <div class="bodyReceitas" style="margin-bottom: 1rem;">
                         <h4>Ingredientes: ${i.ingredientes}</h4>       
-                        <h4 style="margin-bottom: 7%;">Modo de preparo: ${i.preparo}</h4>
+                        <h4 style="margin-bottom: 1rem;">Modo de preparo: ${i.preparo}</h4>
                     </div>
+                    <div class="footeredeletar">
                     <input class="inputDeletar" type="button" id="${i.idreceita}" value="Deletar" onclick="deletarReceita(this)">
+                    </div>
                 </div>`
             }
         }
@@ -221,15 +215,13 @@ async function minhasReceitas() {
         //document.querySelector('.tituloContentPerfil').innerHTML = user.usuario
         document.querySelector('.tituloContentPerfil').style.display = 'flex'
 
-        document.querySelector('.botaoEditar').style.display = 'flex'
-        document.querySelector('.botaoListar').style.display = 'flex'
+        document.querySelector('.botaoEditar').style.display = ''
+        document.querySelector('.botaoListar').style.display = ''
         document.querySelector('.botaoPerfil').style.display = 'none'
-        document.querySelector('.botaoListar').style['left'] = '92%'
-        document.querySelector('.botaoPerfil').style['left'] = '92%'
-        document.querySelector('.botaoEditar').style['left'] = '85%'
+
 
         document.querySelector('.editarReceitaBlock').style.display = 'none'
-        document.querySelector('.perfilBlock').style.display = 'block'
+        document.querySelector('.perfilBlock').style.display = 'flex'
         // document.querySelectorAll('.viewReceitaBlock').forEach(el => el.style.display = 'none')
     }
 }
@@ -256,6 +248,8 @@ async function salvarPerfil() {
             email: email,
             idusuario: user.idusuario
         }
+        user.usuario = usuario
+        user.email = email
         document.querySelector('#load').style.display = ''
         var cadastro = await putLogin(info)
         if (cadastro.ok) {

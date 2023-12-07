@@ -28,12 +28,11 @@ public class loginDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE idlogin = ?";
+			String sql = "UPDATE usuarios SET nome = ?, email = ? WHERE idusuario = ?";
 			PreparedStatement prep = con.getConnection().prepareStatement(sql);
 			prep.setString(1, ext.getUsuario());
 			prep.setString(2, ext.getEmail());
-			prep.setString(3, ext.getSenha());
-			prep.setInt(4, ext.getIdlogin());
+			prep.setInt(3, ext.getIdlogin());
 
 			prep.execute();
 		} catch (Exception e) {
@@ -45,7 +44,7 @@ public class loginDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "DELETE FROM usuarios WHERE idlogin = ?";
+			String sql = "DELETE FROM usuarios WHERE idusuario = ?";
 			PreparedStatement prep = con.getConnection().prepareStatement(sql);
 			prep.setInt(1, ext.getIdlogin());
 			prep.execute();
@@ -81,14 +80,14 @@ public class loginDAO {
 		Conexao con = new Conexao();
 		
 		try {
-			String sql = "SELECT * FROM usuarios ORDER BY idlogin";
+			String sql = "SELECT * FROM usuarios ORDER BY idusuario";
 			System.out.println("SQL [ GET ] - " + sql);
 			Statement instrucao = con.getConnection().createStatement();
 			ResultSet resultSet = instrucao.executeQuery(sql);
 
 			while (resultSet.next()) {
 				loginDTO ext = new loginDTO();
-				ext.setIdlogin(resultSet.getInt("idlogin"));
+				ext.setIdlogin(resultSet.getInt("idusuario"));
 				ext.setUsuario(resultSet.getString("nome"));
 				ext.setEmail(resultSet.getString("email"));
 				ext.setSenha(resultSet.getString("senha"));

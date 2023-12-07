@@ -38,7 +38,6 @@ async function postReceita(info) {
             if (response.status >= 200 && response.status < 300) {
                 const retorno = response;
                 listaReceitas()
-                mostraLista()
                 resolve(retorno);
             } else {
                 reject({
@@ -64,8 +63,6 @@ async function postLogin(info) {
         fetch(url, obj).then(async function (response) {
             if (response.status >= 200 && response.status < 300) {
                 const retorno = response;
-                // listaReceitas()
-                // mostraLista()
                 resolve(retorno);
             } else {
                 reject({
@@ -91,8 +88,6 @@ async function putLogin(info) {
         fetch(url, obj).then(async function (response) {
             if (response.status >= 200 && response.status < 300) {
                 const retorno = response;
-                // listaReceitas()
-                // mostraLista()
                 resolve(retorno);
             } else {
                 reject({
@@ -118,8 +113,6 @@ async function deleteReceita(id) {
         fetch(url, obj).then(async function (response) {
             if (response.status >= 200 && response.status < 300) {
                 const retorno = response;
-                // listaReceitas()
-                // mostraLista()
                 resolve(retorno);
             } else {
                 reject({

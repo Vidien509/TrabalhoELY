@@ -135,7 +135,7 @@ body #loadReload {
     align-items: center;
     width: 80%;
     height: 35rem;
-    margin-top: 6%;
+    margin-top: 8rem;
     box-shadow: 1 1 1px;
     background-color: #fff;
     font-size: 14px;
@@ -149,32 +149,29 @@ body #loadReload {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 .headerReceitas{
     display: block;
-    justify-content: center;
-    align-items: center;   
-    width: 100%;
+    width: 90%;
     margin-top: 7%;
 }
 
 .bodyReceitas{
     display: block;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    width: 90%;
     margin-top: 5%;
+    border-radius: 10px;
+    outline: 1px solid #707070;
+    padding: 1rem;
 }
 
 .botaoEditar, .botaoListar, .botaoPerfil {
-    display: block;
-    left: 92%;
     box-shadow: 0 2px 6px 0px #ccc;
     border-radius: 10px;
     background-color: dodgerblue;
     border: 0px;
     transition: 0.3s;
-    position: absolute;
     cursor: pointer;
 }
 .botaoEditar:hover,.botaoListar:hover, .botaoPerfil:hover{
@@ -219,12 +216,9 @@ body #loadReload {
     background-color: dodgerblue;
     border: 0px;
     border-radius: 15px;
-    width: 7%;
+    width: 7rem;
     height: 30px;
     cursor: pointer;
-    margin-top: 13%;
-    position: absolute;
-    margin-left: 32%;
 }
 
 .inputSalvar:hover{
@@ -238,22 +232,33 @@ body #loadReload {
 .editarReceitaBlock, .perfilBlock{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 #inputAutor{
     margin-bottom: 3%;
 }
 
-.tituloContentCriar, .tituloContentLista, .tituloContentPerfil, .tituloContentInfo, .tituloContentMyReceitas{
+.tituloContentCriar, .tituloContentLista, .tituloContentInfo, .tituloContentMyReceitas{
     font-size: 25px;
-    margin-top: 2%;
     color: dodgerblue;
     font-weight: bold;
+    display: flex;
 }
+
+.tituloContentPerfil{
+  font-size: 25px;
+  color: dodgerblue;
+  font-weight: bold;
+  display: block;
+}
+
 .viewReceitaBlock{
     border-bottom: 2px solid;
     border-color: dodgerblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .viewReceitaBlock:last-child{
     border-bottom: 0px solid;
@@ -263,7 +268,7 @@ body #loadReload {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 25rem;
     margin-top: 10%;
 }
 
@@ -323,7 +328,7 @@ body #loadReload {
 }
 
 .navInputsList{
-    width: 30%;
+    width: 20rem;
     display: flex;
 }
 
@@ -344,12 +349,11 @@ body #loadReload {
     background-color: dodgerblue;
     border: 0px;
     border-radius: 15px;
-    width: 8%;
+    width: 7rem;
     height: 30px;
     cursor: pointer;
-    margin-top: 9%;
-    position: absolute;
-    margin-left: 30%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 .inputSalvarPerfil:hover{
@@ -388,11 +392,11 @@ body #loadReload {
     background-color: dodgerblue;
     border: 0px;
     border-radius: 15px;
-    width: 8%;
+    width: 7rem;
     height: 30px;
     cursor: pointer;
-    margin-bottom: 1%;
-    margin-left: 85%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 .inputDeletar:hover{
@@ -401,4 +405,38 @@ body #loadReload {
 
 .inputDeletar:active{
     background-color: white
+}
+
+.footereditar{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.footeredeletar{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.titulosHeaderBlock{
+  width: 85%;
+}
+
+.botoesHeaderBlock{
+  width: 15%;
+}
+
+.editarReceitaBlock .bodyReceitasEditar{
+  display: block;
+  width: 90%;
+  margin-top: 5%;
+  border-radius: 10px;
+} 
+
+.infoBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
